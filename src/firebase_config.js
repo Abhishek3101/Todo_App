@@ -13,7 +13,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-
+firebase.auth().setPersistence('local');
 const db = firebase.firestore();
 
 export { db };

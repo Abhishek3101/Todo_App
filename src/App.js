@@ -16,6 +16,22 @@ function App() {
   const [dispname, setdispname] = useState("Hello");
   const [email, setemail] = useState("");
   const [status, setstatus] = useState(false);
+  useEffect(() => {
+      firebase.auth().onAuthStateChanged((user)=>{
+      if(user){
+      var name = user.displayName;
+      var useremail = user.email;
+      setdispname(name);
+      setemail(useremail);
+      setstatus(true);
+      console.log("I have logged in")
+      getTodos();
+
+      }
+
+      });
+  }, [])
+
 
 
   useEffect(() => {
@@ -59,7 +75,7 @@ function App() {
         // const token = credential.accessToken;
         // The signed-in user info.
         const user = result.user;
-        // console.log(user)
+        console.log(user)
         var name = user.displayName;
         var useremail = user.email;
         setdispname(name);
